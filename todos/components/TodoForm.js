@@ -1,47 +1,50 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo } from "../actions/index";
+import { addTodo } from "../actions";
 
 class TodoForm extends React.Component {
   state = {
-    newTodo: ""
+   task: "",
+   completed: false,
+    // {task: "', id: Date.now(), completed: false,}
   };
 
   handleChanges = (e) => {
-    this.setState({ newTodo: e.target.value });
+    this.setState({[e.taget.task]: e.target.value });
   };
 
   handleAddToDo = (e) => {
     e.preventDefault();
-    this.props.addTodo(this.state.newTodo);
-    this.setState({ newTodo: "" });
+    const newTodo = {
+      task: this.state.task,
+      completed: this.state.completed,
+    }
+    this.props.addTodo(newTodo);
+    this.setState({ task:'', completed: false });
   };
 
   render() {
     return (
       <div>
-        <div>
-          {this.props.todoItems.map((item) => (
-            <ul>{item.todoItem}</ul>
-          ))}
-        </div>
-        <div>
-          <input
-            name="newTodo"
-            type="text"
-            value={this.state.newTodo}
-            onChange={this.handleChanges}
-            placeholder="Add your todo"
-          />
-          <button onClick={this.handleAddToDo}>Add Your Todo</button>
-        </div>
+        <form>
+        <input
+          name="newTodo"
+          type="text"
+          value={this.state.task}
+          onChange={this.handleChanges}
+          placeholder="Add your todo"
+        />
+        <button onClick={this.handleAddToDo}>Add Your Todo</button>
+        </form>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  todoItems: state.todoItems
+  todos: state.todos,
+  addingTodo: state.addingTodo,
+  error: state.error
 });
 
 export default connect(
