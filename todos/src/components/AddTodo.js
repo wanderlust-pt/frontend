@@ -1,60 +1,63 @@
-//after url
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addTodo, clearCompleted } from "../actions";
 
-// import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { addTodo } from "../actions";
+class AddTodo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: null,
+      title: "testing",
+      notes: "asdfaasf",
+      setDate: null,
+      userId: 2,
+      task: "",
+      created_at: "2019-04-30 02:47:22",
+      updated_at: "2019-04-30 02:47:22",
+      completed: 0
+    };
+  }
 
-// class AddTodo extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       id: null,
-//       text: "",
-//       completed: false
-//     };
-//   }
+  changeHandler = (event) => {
+    this.setState({ task: event.target.value });
+  };
 
-//   changeHandler = event => {
-//     this.setState({ [event.target.name]: event.target.value });
-//   };
+  addTodoHandle = (event) => {
+    event.preventDefault();
+    this.state.id = Date.now();
+    this.props.addTodo(this.state);
+    this.setState(() => ({
+      task: "",
+      completed: 0
+    }));
+  };
 
-//   addTodoHandle = event => {
-//     event.preventDefault();
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.addTodoHandle}>
+          <input
+            name="name"
+            value={this.state.task}
+            onChange={this.changeHandler}
+            type="text"
+            placeholder="add item"
+            required
+          />
 
-//     this.props.addTodo(this.state.text);
-//     this.setState(() => ({
-//       text: "",
+          <input type="submit" value="Add items" />
+        </form>
+        <button onClick={() => this.props.clearCompleted()}>
+          Clear Completed
+        </button>
+      </div>
+    );
+  }
+}
 
-//       completed: false
-//     }));
-//   };
+const mapStateToProps = () => {};
 
-//   render() {
-//     return (
-//       <div>
-//         <form onSubmit={this.addTodoHandle}>
-//           <input
-//             name="name"
-//             value={this.state.text}
-//             onChange={this.changeHandler}
-//             type="text"
-//             placeholder="add item"
-//             required
-//           />
-
-//           <input type="submit" value="Add items" />
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-
-// const mapStateToProps = state => {
-//   return {
-//     todos: state.todos
-//   };
-// };
-// export default connect(
-//   mapStateToProps,
-//   { addTodo }
-// )(AddTodo);
+export default connect(
+  mapStateToProps,
+  { addTodo, clearCompleted }
+)(AddTodo);
