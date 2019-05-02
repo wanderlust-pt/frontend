@@ -1,54 +1,41 @@
 import React, { Component } from "react";
-
-import TodoList from "./components/TodoList";
-import TodoForm from "./components/TodoForm";
 import "./App.css";
+import TodoList from "./components/TodoList";
+import AddTodo from "./components/AddTodo";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import Login from "./components/Login";
+import Register from "./components/Register";
+import PrivateRoute from "./components/PrivateRoute";
+import Marketing from "./components/Marketing";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1> Welcome to your Todo App!</h1>
-        <TodoForm />
-        <TodoList />
-      </div>
+      <Router>
+        <div className="App">
+          <nav>
+            <p>
+              <Link to="/login">Log In</Link>
+              <Link to="/Register">Register</Link>
+            </p>
+          </nav>
+          <Route
+            exact
+            path="/"
+            render={(props) => {
+              return <Marketing {...props} />;
+            }}
+          />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <PrivateRoute exact path="/protected" component={AddTodo} />
+          <PrivateRoute exact path="/protected" component={TodoList} />
+        </div>
+      </Router>
     );
   }
 }
 
 export default App;
-
-// After getting the url
-// import React, { Component } from "react";
-// import "./App.css";
-// import TodoList from "./TodoList";
-// import AddTodo from "./AddTodo";
-
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-// import Login from "./Login";
-// import PrivateRoute from "./PrivateRoute";
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <Router>
-//         <div className="App">
-//           <nav>
-//             <p>
-//               <Link to="/login">Login</Link>
-//             </p>
-//             <p>
-//               <Link to="/protected">Todos</Link>
-//             </p>
-//           </nav>
-//           <Route exact path="/login" component={Login} />
-//           <PrivateRoute exact path="/protected" component={TodoList} />
-//           <PrivateRoute exact path="/protected" component={AddTodo} />
-//         </div>
-//       </Router>
-//     );
-//   }
-// }
-
-// export default App;

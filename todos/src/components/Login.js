@@ -7,10 +7,8 @@ import Loader from "react-loader-spinner";
 class Login extends React.Component {
   state = {
     credentials: {
-      username: "",
-      password: ""
-      //   username: "Lambda School",
-      //   password: "i<3Lambd4"
+      username: "loginTest",
+      password: "123"
     }
   };
 
@@ -18,7 +16,7 @@ class Login extends React.Component {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        text: e.target.value
+        task: e.target.value
       }
     });
   };
@@ -55,7 +53,7 @@ class Login extends React.Component {
             {this.props.loggingIn ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
-              "Login"
+              "Log In"
             )}
           </button>
         </form>
