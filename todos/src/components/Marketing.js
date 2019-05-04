@@ -1,9 +1,10 @@
 import React from "react";
+import "../App.css";
 
 const Marketing = () => {
   return (
     <div>
-      <h1>Welcome to WunderList!!!</h1>
+      <div className="Welcome">Welcome to WunderList!!</div>
     </div>
   );
 };

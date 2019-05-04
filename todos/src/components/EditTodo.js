@@ -12,11 +12,11 @@ class EditTodo extends Component {
   //   // this.props.getTodos();
   // }
 
-  changeHandler = (event) => {
+  changeHandler = event => {
     this.setState({ task: event.target.value });
   };
 
-  editTodoHandle = (event) => {
+  editTodoHandle = event => {
     event.preventDefault();
     this.props.editTodo(this.state);
     this.setState(() => ({
@@ -29,22 +29,24 @@ class EditTodo extends Component {
     return (
       <div>
         <form onSubmit={this.editTodoHandle}>
-          Edit
-          <input
-            name="task"
-            value={this.state.task}
-            onChange={this.changeHandler}
-            type="text"
-            placeholder="Please enter your list"
-            required
-          />
-          <input type="submit" value="submit" />
+          <div className="update">
+            <input
+              className="edit"
+              name="task"
+              value={this.state.task}
+              onChange={this.changeHandler}
+              type="text"
+              placeholder="Please edit your item"
+              required
+            />
+            <input className="updatesubmit" type="submit" value="Update" />
+          </div>
         </form>
       </div>
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     todos: state.todos
   };

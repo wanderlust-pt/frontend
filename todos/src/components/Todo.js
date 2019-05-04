@@ -9,7 +9,7 @@ class Todo extends Component {
   //   super();
   // }
 
-  deleteTodoHandle = (event) => {
+  deleteTodoHandle = event => {
     let id = Number(event.target.id);
     this.props.deleteTodo(id);
   };
@@ -17,19 +17,25 @@ class Todo extends Component {
   render() {
     const { id, task } = this.props.todo;
     return (
-      <div>
+      <div className="taskcombined">
+        <div className="taskbutton">
+          <div>
+            <button
+              className="icon"
+              onClick={() => this.props.updatingTodo(id)}
+            >
+              ^
+            </button>
+            <button className="icon" id={id} onClick={this.deleteTodoHandle}>
+              x
+            </button>
+          </div>
+        </div>
         <div
-          className={this.props.todo.completed ? `complete` : null}
+          className={this.props.todo.completed ? `complete` : `incomplete`}
           onClick={() => this.props.toggleTodo(id)}
         >
-          <div>task:{task}</div>
-        </div>
-
-        <div>
-          <button onClick={() => this.props.updatingTodo(id)}>edit</button>
-          <button id={id} onClick={this.deleteTodoHandle}>
-            x
-          </button>
+          <p>{task}</p>
         </div>
 
         <div>
@@ -44,7 +50,7 @@ class Todo extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     todos: state.todos,
     editing: state.editing

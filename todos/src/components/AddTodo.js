@@ -8,21 +8,23 @@ class AddTodo extends Component {
     this.state = {
       id: null,
       title: "testing",
-      notes: "asdfaasf",
+      notes: "", //asdfaasf
       setDate: null,
       userId: 2,
       task: "",
-      created_at: "2019-04-30 02:47:22",
-      updated_at: "2019-04-30 02:47:22",
+      created_at: Date.now(),
+      //"2019-04-30 02:47:22",
+      updated_at: Date.now(),
+      //"2019-04-30 02:47:22",
       completed: 0
     };
   }
 
-  changeHandler = (event) => {
+  changeHandler = event => {
     this.setState({ task: event.target.value });
   };
 
-  addTodoHandle = (event) => {
+  addTodoHandle = event => {
     event.preventDefault();
     this.state.id = Date.now();
     this.props.addTodo(this.state);
@@ -32,24 +34,45 @@ class AddTodo extends Component {
     }));
   };
 
+  getCurrentDate(separator = "") {
+    let newDate = new Date();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+
+    return `${
+      month < 10 ? `0${month}` : `${month}`
+    }${separator}/${date}/${year}${separator}
+    `;
+  }
+
   render() {
     return (
       <div>
+        <h1 className="please">My List</h1>
+        <h4> {this.getCurrentDate()} </h4>
         <form onSubmit={this.addTodoHandle}>
-          <input
-            name="name"
-            value={this.state.task}
-            onChange={this.changeHandler}
-            type="text"
-            placeholder="add item"
-            required
-          />
+          <div className="combined">
+            <input
+              className="add"
+              name="name"
+              value={this.state.task}
+              onChange={this.changeHandler}
+              type="text"
+              placeholder="Please add your item"
+              required
+            />
 
-          <input type="submit" value="Add items" />
+            <input className="submit" type="submit" value="+" />
+            <input
+              className="submit"
+              type="submit"
+              value="✓"
+              // value="Clear Completed Item"
+              onClick={() => this.props.clearCompleted()}
+            />
+          </div>
         </form>
-        <button onClick={() => this.props.clearCompleted()}>
-          Clear Completed
-        </button>
       </div>
     );
   }

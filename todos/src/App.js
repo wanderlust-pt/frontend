@@ -15,23 +15,27 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <nav>
-            <p>
-              <Link to="/login">Log In</Link>
-              <Link to="/Register">Register</Link>
-            </p>
-          </nav>
           <Route
             exact
             path="/"
-            render={(props) => {
+            render={props => {
               return <Marketing {...props} />;
             }}
           />
+          <nav>
+            <button className="login">
+              <Link to="/login">Registered User</Link>
+            </button>{" "}
+            <button className="login">
+              <Link to="/Register">Not Registered User </Link>
+            </button>
+          </nav>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/protected" component={AddTodo} />
-          <PrivateRoute exact path="/protected" component={TodoList} />
+          <div className="main">
+            <PrivateRoute exact path="/protected" component={AddTodo} />
+            <PrivateRoute exact path="/protected" component={TodoList} />
+          </div>
         </div>
       </Router>
     );

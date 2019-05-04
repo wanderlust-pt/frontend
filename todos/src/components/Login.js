@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { handleLogin } from "../actions";
 import Loader from "react-loader-spinner";
+import "../App.css";
 
 class Login extends React.Component {
   state = {
@@ -12,7 +13,7 @@ class Login extends React.Component {
     }
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       credentials: {
         ...this.state.credentials,
@@ -21,7 +22,7 @@ class Login extends React.Component {
     });
   };
 
-  handleLogin = (e) => {
+  handleLogin = e => {
     e.preventDefault();
     this.props
       .handleLogin(this.state.credentials)
@@ -32,24 +33,31 @@ class Login extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleLogin}>
-          <h2>Please Log In</h2>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="••••••••"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
+          <h2 className="title">Good to see you back!!</h2>
+          <div className="user">
+            Username:
+            <input
+              className="infoname"
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={this.state.credentials.username}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="user">
+            Password:
+            <input
+              className="infoname"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
+            />
+          </div>
           <div>{this.props.error && <p>{this.props.error}</p>}</div>
-          <button>
+          <button className="submit">
             {this.props.loggingIn ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (

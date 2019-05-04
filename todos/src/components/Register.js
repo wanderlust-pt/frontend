@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addUsers } from "../actions";
 
+import { Link } from "react-router-dom";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +17,11 @@ class Register extends Component {
     };
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleRegister = (e) => {
+  handleRegister = e => {
     e.preventDefault();
     this.props
       .addUsers(this.state)
@@ -29,49 +31,71 @@ class Register extends Component {
   render() {
     return (
       <form onSubmit={this.handleRegister}>
-        <p>First Name:</p>
-        <input
-          name="firstname"
-          type="text"
-          placeholder="First Name"
-          onChange={this.handleInputChange}
-        />
-        <p>Middle Name:</p>
-        <input
-          name="middlename"
-          type="text"
-          placeholder="Middle Name"
-          onChange={this.handleInputChange}
-        />
-        <p>Last Name:</p>
-        <input
-          name="lastname"
-          type="text"
-          placeholder="Last Name"
-          onChange={this.handleInputChange}
-        />
-        <p>User Name:</p>
-        <input
-          name="username"
-          type="text"
-          placeholder="User Name"
-          onChange={this.handleInputChange}
-        />
-        <p>Password:</p>
-        <input
-          name="password"
-          type="text"
-          placeholder="**********"
-          onChange={this.handleInputChange}
-        />
-        <p>Email:</p>
-        <input
-          name="email"
-          type="text"
-          placeholder="email"
-          onChange={this.handleInputChange}
-        />
-        <button>Register</button>
+        <div className="user">
+          First Name:
+          <input
+            className="info"
+            name="firstname"
+            type="text"
+            placeholder="First Name"
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div className="user">
+          Middle Name:
+          <input
+            className="info"
+            name="middlename"
+            type="text"
+            placeholder="Middle Name"
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div className="user">
+          Last Name:
+          <input
+            className="info"
+            name="lastname"
+            type="text"
+            placeholder="Last Name"
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div className="user">
+          User Name:
+          <input
+            className="info"
+            name="username"
+            type="text"
+            placeholder="User Name"
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div className="user">
+          Password:
+          <input
+            className="info"
+            name="password"
+            type="text"
+            placeholder="**********"
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div className="user">
+          Email:
+          <input
+            className="info"
+            name="email"
+            type="text"
+            placeholder="Email"
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div>
+          <button className="submit">
+            <Link to="/login">Register</Link>
+          </button>
+        </div>
       </form>
     );
   }
