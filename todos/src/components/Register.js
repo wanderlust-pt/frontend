@@ -17,11 +17,11 @@ class Register extends Component {
     };
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleRegister = e => {
+  handleRegister = (e) => {
     e.preventDefault();
     this.props
       .addUsers(this.state)

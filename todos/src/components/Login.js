@@ -13,7 +13,7 @@ class Login extends React.Component {
     }
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       credentials: {
         ...this.state.credentials,
@@ -22,7 +22,7 @@ class Login extends React.Component {
     });
   };
 
-  handleLogin = e => {
+  handleLogin = (e) => {
     e.preventDefault();
     this.props
       .handleLogin(this.state.credentials)

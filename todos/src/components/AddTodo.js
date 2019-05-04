@@ -7,7 +7,7 @@ class AddTodo extends Component {
     super(props);
     this.state = {
       id: null,
-      title: "testing",
+      title: "My List",
       notes: "", //asdfaasf
       setDate: null,
       userId: 2,
@@ -20,11 +20,11 @@ class AddTodo extends Component {
     };
   }
 
-  changeHandler = event => {
+  changeHandler = (event) => {
     this.setState({ task: event.target.value });
   };
 
-  addTodoHandle = event => {
+  addTodoHandle = (event) => {
     event.preventDefault();
     this.state.id = Date.now();
     this.props.addTodo(this.state);
@@ -49,7 +49,7 @@ class AddTodo extends Component {
   render() {
     return (
       <div>
-        <h1 className="please">My List</h1>
+        <h1 className="please">{this.state.title}</h1>
         <h4> {this.getCurrentDate()} </h4>
         <form onSubmit={this.addTodoHandle}>
           <div className="combined">

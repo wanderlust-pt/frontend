@@ -9,7 +9,7 @@ class Todo extends Component {
   //   super();
   // }
 
-  deleteTodoHandle = event => {
+  deleteTodoHandle = (event) => {
     let id = Number(event.target.id);
     this.props.deleteTodo(id);
   };
@@ -50,7 +50,7 @@ class Todo extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     todos: state.todos,
     editing: state.editing

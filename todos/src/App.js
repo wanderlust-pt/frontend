@@ -3,7 +3,7 @@ import "./App.css";
 import TodoList from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -18,18 +18,11 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={props => {
+            render={(props) => {
               return <Marketing {...props} />;
             }}
           />
-          <nav>
-            <button className="login">
-              <Link to="/login">Registered User</Link>
-            </button>{" "}
-            <button className="login">
-              <Link to="/Register">Not Registered User </Link>
-            </button>
-          </nav>
+
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <div className="main">

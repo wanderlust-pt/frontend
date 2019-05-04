@@ -12,11 +12,11 @@ class EditTodo extends Component {
   //   // this.props.getTodos();
   // }
 
-  changeHandler = event => {
+  changeHandler = (event) => {
     this.setState({ task: event.target.value });
   };
 
-  editTodoHandle = event => {
+  editTodoHandle = (event) => {
     event.preventDefault();
     this.props.editTodo(this.state);
     this.setState(() => ({
@@ -46,7 +46,7 @@ class EditTodo extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     todos: state.todos
   };
