@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Marketing = () => {
   return (
     <div>
-      <div className="Welcome">Welcome to WunderList!!</div>
+      <div className="Welcome">Welcome to WunderList 2.0!!</div>
       <nav>
         <button className="login">
           <Link to="/login">Registered User</Link>
