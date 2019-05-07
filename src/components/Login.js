@@ -10,6 +10,8 @@ class Login extends React.Component {
     credentials: {
       username: "loginTest",
       password: "123"
+      // username: "",
+      // password: ""
     }
   };
 
@@ -17,7 +19,7 @@ class Login extends React.Component {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        task: e.target.value
+        [e.target.name]: e.target.value
       }
     });
   };

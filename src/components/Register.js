@@ -8,59 +8,69 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: undefined,
-      middlename: undefined,
-      lastname: undefined,
-      username: undefined,
-      password: undefined,
-      email: undefined
+      user: {
+        // firstname: "",
+        // //middlename: "",
+        // lastname: "",
+        username: "",
+        password: "",
+        // email: ""
+      }
     };
   }
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleInputChange = (e) => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value
+      }
+    });
   };
 
-  handleRegister = e => {
+  handleRegister = (e) => {
     e.preventDefault();
     this.props
-      .addUsers(this.state)
+      .addUsers(this.state.user)
       .then(() => this.props.history.push("/login"));
   };
 
   render() {
     return (
       <form onSubmit={this.handleRegister}>
-        <div className="user">
+        {/* <div className="user">
           First Name:
           <input
             className="info"
             name="firstname"
             type="text"
             placeholder="First Name"
+            value={this.state.user.firstname}
             onChange={this.handleInputChange}
           />
-        </div>
-        <div className="user">
+        </div> */}
+        {/* <div className="user">
           Middle Name:
           <input
             className="info"
             name="middlename"
             type="text"
             placeholder="Middle Name"
+            value={this.state.user.middlename}
             onChange={this.handleInputChange}
           />
-        </div>
-        <div className="user">
+        </div> */}
+        {/* <div className="user">
           Last Name:
           <input
             className="info"
             name="lastname"
             type="text"
             placeholder="Last Name"
+            value={this.state.user.lastname}
             onChange={this.handleInputChange}
           />
-        </div>
+        </div> */}
         <div className="user">
           User Name:
           <input
@@ -79,9 +89,10 @@ class Register extends Component {
             type="text"
             placeholder="**********"
             onChange={this.handleInputChange}
+            value={this.state.user.password}
           />
         </div>
-        <div className="user">
+        {/* <div className="user">
           Email:
           <input
             className="info"
@@ -89,8 +100,9 @@ class Register extends Component {
             type="text"
             placeholder="Email"
             onChange={this.handleInputChange}
+            value={this.state.user.email}
           />
-        </div>
+        </div> */}
         <div>
           <button className="submit">
             <Link to="/login">Register</Link>

@@ -12,94 +12,96 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const USERS_SUCCESS = "USERS_SUCCESS";
 export const USERS_START = "USERS_START";
+export const UPDATE_TITLE = "UPDATE_TITLE";
 
-export const handleLogin = creds => dispatch => {
+export const handleLogin = (creds) => (dispatch) => {
   dispatch({ type: LOGIN_START });
   return axios
     .post("https://wunderlist-20.herokuapp.com/login", creds)
-    .then(res => {
+    .then((res) => {
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
     });
 };
 
-export const addUsers = newUser => dispatch => {
+export const addUsers = (user) => (dispatch) => {
   dispatch({ type: USERS_START });
   return axios
-    .post(`https://wunderlist-20.herokuapp.com/register`, newUser)
-    .then(response => {
-      dispatch({ type: USERS_SUCCESS, payload: response.data });
+    .post("https://wunderlist-20.herokuapp.com/register", user)
+    .then((response) => {
+      //localStorage.setItem("token", response.data.token);
+      dispatch({ type: USERS_SUCCESS, payload: response.data.user });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: ERROR, payload: error });
     });
 };
 
-export const getTodos = () => dispatch => {
+export const getTodos = () => (dispatch) => {
   dispatch({ type: FETCH_START });
   axios
     .get(`https://wunderlist-20.herokuapp.com/todos/list`, {
       headers: { Authorization: localStorage.getItem("token") }
     })
-    .then(response => {
+    .then((response) => {
       // localStorage.setItem("token", response.data.payload);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: ERROR, payload: error });
     });
 };
 
-export const addTodo = item => dispatch => {
+export const addTodo = (todo) => (dispatch) => { //todo object
   axios
-    .post(`https://wunderlist-20.herokuapp.com/todos/create`, item, {
+    .post(`https://wunderlist-20.herokuapp.com/todos/create`, todo, {
       headers: { Authorization: localStorage.getItem("token") }
     })
-    .then(response => {
+    .then((response) => {
       // localStorage.setItem("token", response.data.payload);
-      dispatch({ type: ADD_SUCCESS, payload: item });
+      dispatch({ type: ADD_SUCCESS, payload: todo });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: ERROR, payload: error });
     });
 };
 
-export const updatingTodo = id => dispatch => {
+export const updatingTodo = (id) => (dispatch) => {
   dispatch({ type: UPDATE_START, payload: id });
 };
 
-export const editTodo = edited => dispatch => {
+export const editTodo = (edited) => (dispatch) => { //
   axios
     .put(
-      `${`https://wunderlist-20.herokuapp.com/todos/edit`}/${edited.id}`,
+      `${`https://wunderlist-20.herokuapp.com/todos/edit`}/${edited.id}`, //updated .id and updated task
       edited,
       {
         headers: { Authorization: localStorage.getItem("token") }
       }
     )
 
-    .then(response => {
+    .then((response) => {
       dispatch({ type: UPDATE_SUCCESS, payload: edited });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: ERROR, payload: error });
     });
 };
 
-export const deleteTodo = id => dispatch => {
+export const deleteTodo = (id) => (dispatch) => {
   axios
     .delete(`${`https://wunderlist-20.herokuapp.com/todos/delete`}/${id}`, {
       headers: { Authorization: localStorage.getItem("token") }
     })
-    .then(response => {
+    .then((response) => {
       dispatch({ type: DELETE_SUCCESS, payload: id });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: ERROR, payload: error });
     });
 };
 
-export const toggleTodo = id => {
+export const toggleTodo = (id) => {
   return {
     type: TOGGLE_TODO,
     payload: id

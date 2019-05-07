@@ -18,7 +18,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={props => {
+            render={(props) => {
               return <Marketing {...props} />;
             }}
           />

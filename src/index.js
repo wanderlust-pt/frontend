@@ -10,6 +10,7 @@ import reducers from "./reducers";
 
 const store = createStore(reducers, applyMiddleware(thunk, logger));
 
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

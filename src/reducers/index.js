@@ -9,6 +9,7 @@ import {
   TOGGLE_TODO,
   CLEAR_COMPLETED,
   LOGIN_START,
+  USERS_START,
   LOGIN_SUCCESS,
   USERS_SUCCESS
 } from "../actions";
@@ -36,10 +37,18 @@ const reducers = (state = initialState, action) => {
         loggingIn: false
         //token: action.payload
       };
+    case USERS_START:
+      return {
+        ...state,
+        registering: true
+        //token: action.payload
+      };
+
     case USERS_SUCCESS:
       return {
         ...state,
-        registering: false
+        registering: false,
+        error: action.payload,
         //token: action.payload
       };
     case FETCH_START:

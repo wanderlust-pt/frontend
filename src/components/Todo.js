@@ -24,10 +24,10 @@ class Todo extends Component {
               className="icon"
               onClick={() => this.props.updatingTodo(id)}
             >
-              ^
+              ✎
             </button>
             <button className="icon" id={id} onClick={this.deleteTodoHandle}>
-              x
+            ✘
             </button>
           </div>
         </div>
