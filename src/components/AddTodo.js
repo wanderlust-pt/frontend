@@ -20,15 +20,16 @@ class AddTodo extends Component {
     };
   }
 
-  changeHandler = event => {
+  changeHandler = (event) => {
     this.setState({ task: event.target.value });
   };
 
-  addTodoHandle = event => {
+  addTodoHandle = (event) => {
     event.preventDefault();
     this.state.id = Date.now();
     this.props.addTodo(this.state);
     this.setState(() => ({
+      //after clicking on submit button text box is clear.
       task: "",
       completed: 0
     }));
@@ -59,7 +60,7 @@ class AddTodo extends Component {
               value={this.state.task}
               onChange={this.changeHandler}
               type="text"
-              placeholder="Please add your item"
+              placeholder="Please add item to your list"
               required
             />
 

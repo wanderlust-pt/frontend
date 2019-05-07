@@ -21,7 +21,7 @@ class EditTodo extends Component {
     this.props.editTodo(this.state);
     this.setState(() => ({
       task: "",
-      completed: false
+      completed: 0
     }));
   };
 
